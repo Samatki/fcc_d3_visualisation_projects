@@ -1,0 +1,78 @@
+* {
+  font-family: verdana;
+}
+
+.dataPoint {
+  fill: darkCyan;
+}
+.dataPoint:hover {
+  fill: maroon;
+}
+
+svg {
+  position: relative;
+  left: 50%;
+  transform: translate(-750px, 0px);
+}
+
+.leftAxis text {
+  font-size: 15px;
+  transform: translate(-10px, 0);
+}
+
+.bottomAxis text {
+  font-size: 15px;
+}
+
+.leftAxis line {
+  stroke: lightgrey;
+  stroke-width: 2px;
+}
+
+.bottomAxis line {
+  stroke: lightgrey;
+}
+
+.solidLine {
+  fill: goldenRod;
+}
+
+.remove-fixed {
+  height: 50px;
+  width: 200px;
+  fill: white;
+  cursor: pointer;
+  stroke: black;
+}
+.remove-fixed:active {
+  fill: lightgrey;
+}
+
+.rqContainer {
+  display: none;
+  transform: translate(650px, 650px);
+  opacity: 0;
+}
+
+svg text {
+  pointer-events: none;
+}
+svg text::selection {
+  background-color: transparent;
+}
+
+.toolTip text, .ttIndicator text {
+  font-size: 15px;
+}
+
+h1 {
+  text-align: center;
+}
+
+body {
+  background-color: GhostWhite;
+}
+
+.ttIndicator {
+  opacity: 0.8;
+}

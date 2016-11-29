@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    .link {
+        stroke: #ccc;
+    }
+    
+    .node text {
+        pointer-events: all;
+        font: 10px sans-serif;
+    }
+    
+    .toolTip {}
+    
+    .toolTipBox {
+        fill: slateGrey
+    }
+    
+    .toolTipText {
+        font-family: 'Ubuntu Mono', monospace;
+        fill: white;
+    }
+    
+    .graphMain{
+      background-color:floralwhite;
+    }
+    
+    
+</style>
+
+<body>
+    <script src="//d3js.org/d3.v4.0.0-alpha.49.min.js"></script>
+    <script src="themes/flagPositions.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <script>
+        $(document).ready(function() {
+
+            var width = 2000,
+                height = 1700
+
+            var svg = d3.select("body").append("svg").classed('graphMain',true)
+                .attr("width", width)
+                .attr("height", height);
+
+            var simulation = d3.forceSimulation()
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("charge", d3.forceManyBody())
+                .force("link", d3.forceLink());
+
+
+            $.ajax({
+                url: 'https://raw.githubusercontent.com/DealPete/forceDirected/master/countries.json',
+                dataType: 'JSON',
+                type: 'GET',
+                success: function(data) {
+
+                    function dragstarted(d) {
+                        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+                        d.fx = d.x;
+                        d.fy = d.y;
+                    }
+
+                    function dragged(d) {
+                        d.fx = d3.event.x;
+                        d.fy = d3.event.y;
+                    }
+
+                    function dragended(d) {
+                        if (!d3.event.active) simulation.alphaTarget(0);
+                        d.fx = null;
+                        d.fy = null;
+                    }
+
+                    simulation
+                        .nodes(data.nodes);
+
+                    simulation
+                        .force("link")
+                        .links(data.links);
+
+                    var link = svg.selectAll(".link")
+                        .data(data.links)
+                        .enter().append("line")
+                        .attr("class", "link");
+
+                    var node = svg.selectAll(".node")
+                        .data(data.nodes)
+                        .enter().append("g")
+                        .attr("class", "node")
+
+
+                    node.append('rect')
+                        .attr('height', 32)
+                        .attr('width', 32)
+                        .attr('fill', 'none')
+
+
+                    console.log(node)
+
+                    node.append('svg')
+                        .classed('flagElement', true)
+                        .attr('width', 32)
+                        .attr('height', 32)
+                        .attr('y', '-16')
+                        .attr('x', '-16')
+                        .append('image')
+                        .attr('width', 480)
+                        .attr('height', 480)
+                        .attr('xlink:href', 'themes/flags.png')
+                        .attr('class', function(d) {
+                            return d.country + ':' + d.code
+                        })
+                        .attr('y', function(d) {
+                            return (-1 * (flagImagePosition['flag_' + d.code]['flag_y_position']))
+                        })
+                        .attr('x', function(d) {
+                            return (-1 * (flagImagePosition['flag_' + d.code]['flag_x_position']))
+                        })
+
+                    node.on('mouseenter', function(d) {
+
+                            svg.append('g')
+                                .attr('transform', d3.select(this).attr('transform'))
+                                .classed('toolTip', true)
+
+                            d3.select('.toolTip')
+                                .append('rect')
+                                .classed('toolTipBox', true)
+                                .attr('height', 20)
+                                .attr('width', 8.5 * d.country.length)
+                                .attr('x', d3.mouse(this)[0] + 10)
+                                .attr('y', d3.mouse(this)[1] - 15)
+                                .attr('rx', 3)
+                                .attr('ry', 3)
+
+                            d3.select('.toolTip').append("text")
+                                .classed('toolTipText', true)
+                                .attr('x', d3.mouse(this)[0] + 12)
+                                .attr('y', d3.mouse(this)[1] - 15)
+                                .append('tspan')
+                                .text(d.country)
+
+
+
+                        })
+                        .on('mousemove', function() {
+                            d3.select('.toolTipText')
+                                .attr('x', d3.mouse(this)[0] + 12)
+                                .attr('y', d3.mouse(this)[1] - 15)
+
+                            d3.select('.toolTipBox')
+                                .attr('x', d3.mouse(this)[0] + 10)
+                                .attr('y', d3.mouse(this)[1] - 30)
+
+                        })
+                        .on('mouseleave', function() {
+                            d3.select('.toolTip').remove()
+                        });
+
+                    simulation.on("tick", function() {
+                        link.attr("x1", function(d) {
+                                return d.source.x;
+                            })
+                            .attr("y1", function(d) {
+                                return d.source.y;
+                            })
+                            .attr("x2", function(d) {
+                                return d.target.x;
+                            })
+                            .attr("y2", function(d) {
+                                return d.target.y;
+                            });
+
+                        node.attr("transform", function(d) {
+                            return "translate(" + d.x + "," + d.y + ")";
+                        });
+                    });
+
+
+                }
+            })
+
+
+        });
+    </script>

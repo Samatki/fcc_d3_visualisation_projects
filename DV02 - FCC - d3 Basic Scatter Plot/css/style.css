@@ -1,0 +1,72 @@
+* {
+  font-family: Helvetica;
+}
+
+svg {
+  display: block;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+}
+
+.dataPoint {
+  fill: green;
+}
+.dataPoint:hover {
+  fill: red;
+}
+
+#keyBox {
+  opacity: 0.75;
+  fill: lightgrey;
+}
+
+#tooltipBox {
+  fill: lightgrey;
+  opacity: 1;
+}
+
+svg text {
+  pointer-events: none;
+}
+svg text::selection {
+  background-color: transparent;
+}
+
+.druggy {
+  fill: purple;
+}
+
+.leftAxis text, .bottomAxis text {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+}
+
+.bottomTitle, .leftTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+div {
+  background: url("https://static.digg.com/images/90fea9dde30044a09242879f6b37bece_9f8a6fa872b24912a63bd61fb171c642_header.jpeg") no-repeat;
+  background-position: 50% 75%;
+  padding: 100px 50px 100px 50px;
+  margin: auto;
+  width: 1300px;
+  border-radius: 10px;
+  filter: blur(5px);
+  filter: drop-shadow(16px 16px 10px black);
+}
+
+h1 {
+  color: whigreyte;
+  filter: drop-shadow(16px 16px 10px black);
+}
+
+body {
+  background-color: lightsteelblue;
+}

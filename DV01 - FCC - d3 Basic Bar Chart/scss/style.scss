@@ -1,0 +1,97 @@
+*{
+  font-family: verdana;
+}
+
+.dataPoint{
+  fill: darkCyan;
+  &:hover{
+    fill:maroon;
+  }
+}
+
+svg{
+position:relative;
+left:50%;
+transform:translate(-750px,0px);  
+}
+
+.leftAxis text {
+  font-size:15px;
+  transform: translate(-10px,0)
+}
+
+.bottomAxis text{
+    font-size:15px;
+}
+
+ .leftAxis line{
+stroke:lightgrey;
+   stroke-width:2px;
+}
+
+.bottomAxis line{
+  stroke:lightgrey;
+}
+
+.solidLine{
+  fill:goldenRod;
+  //position:relative;
+}
+
+.fixedPointInfo{
+//  height:5px;
+ // width:5px;
+ // fill: pink;
+}
+
+.remove-fixed{
+  height:50px;
+  width:200px;
+  fill:white;
+  cursor:pointer;
+  stroke:black;
+    &:active{
+    fill:lightgrey;
+  }
+
+}
+
+.rqContainer{
+  display:none;
+  transform: translate(650px,650px);
+  opacity:0;
+
+}
+
+
+.jkl{
+ // pointer-events:none;
+}
+
+svg text{
+  pointer-events:none;
+  &::selection{
+    background-color:transparent;
+  }
+}
+
+tspan{
+}
+
+.toolTip, .ttIndicator{ 
+  text{
+  font-size:15px;
+  }
+}
+
+h1{
+  text-align:center;
+}
+
+body{
+  background-color:GhostWhite ;
+}
+
+.ttIndicator{
+  opacity:0.8;
+}

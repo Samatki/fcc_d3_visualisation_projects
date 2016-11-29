@@ -1,0 +1,43 @@
+* {
+  font-family: arial;
+}
+
+.leftAxis {
+  font-size: 14px;
+  text-align: right;
+}
+
+.bottomAxis {
+  font-size: 14px;
+}
+
+svg {
+  background-color: white;
+  margin: auto;
+  display: block;
+}
+svg text {
+  pointer-events: none;
+}
+svg text::selection {
+  background-color: transparent;
+}
+
+.tooltipBox {
+  height: 65px;
+  width: 130px;
+  fill: lightgrey;
+  opacity: 0.9;
+}
+
+.highlighted {
+  fill: blue !important;
+}
+
+.tooltip {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+}
