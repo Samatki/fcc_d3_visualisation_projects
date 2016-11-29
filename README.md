@@ -11,6 +11,6 @@
 
 3. d3 Heat Map - [Link](http://samatki.github.io/fcc_d3_visualisation_projects/DV03 - FCC - d3 Heat Map/index.html)
 
-4. d3 Force Directed Graph - [Link](http://samatki.github.io/fcc_d3_visualisation_projects/DV04 - FCC - d3 Force Directed Graph/index.html)
+4. d3 Force Directed Graph - [Link](http://samatki.github.io/fcc_d3_visualisation_projects/DV04 - FCC - d3 Force Directed Graph/main/fromBasics.html)
 
 5. d3 Mapping - [Link](http://samatki.github.io/fcc_d3_visualisation_projects/DV05 - FCC - d3 Mapping/index.html) 
